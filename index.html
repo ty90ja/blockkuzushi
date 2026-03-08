@@ -16,10 +16,16 @@
   <div id="container">
     <canvas id="gameCanvas"></canvas>
     <div id="controls">
+      <button id="ballBtn" aria-label="分裂弾">
+        <span class="ball-icon">◎</span>
+        <span class="ball-label">分裂弾</span>
+        <span class="ball-hint">左右45°に発射</span>
+      </button>
       <button id="laserBtn" aria-label="レーザー砲">
         <span class="laser-icon">⚡</span>
         <span class="laser-label">レーザー砲</span>
-        <span class="laser-hint">押している間だけ発射</span>
+        <span class="laser-hint">3秒長押し→波動砲</span>
+        <span class="wave-charge-bar"><span id="waveChargeInner"></span></span>
       </button>
     </div>
   </div>
