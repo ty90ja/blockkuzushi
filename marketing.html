@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kindle個人出版 マーケティング攻略ガイド | パンケーキ502</title>
+  <style>
+    :root {
+      --bg: #0a0a1e;
+      --bg2: #0f0f2a;
+      --card: #131330;
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --gold: #ffcc00;
+      --text: #e0e0f0;
+      --muted: #8888aa;
+      --border: #2a2a4a;
+      --success: #44cc88;
+      --warning: #ffaa44;
+      --danger: #ff4466;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ─── ヘッダー ─── */
+    .hero {
+      background: linear-gradient(135deg, #1a0a3a, #0a1a4a, #0a0a1e);
+      border-bottom: 2px solid var(--accent);
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 560px;
+      margin: 0 auto 24px;
+    }
+
+    .author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    /* ─── ナビ ─── */
+    .toc {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .toc a {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-right: 20px;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ─── メインレイアウト ─── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ─── セクション ─── */
+    .section {
+      margin-top: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .section-icon {
+      font-size: 22px;
+    }
+
+    /* ─── カード ─── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p, .card li {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .card ul {
+      padding-left: 18px;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
+
+    /* ─── グリッド ─── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* ─── ステップ ─── */
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      counter-increment: step;
+      position: relative;
+    }
+
+    .step::before {
+      content: "STEP " counter(step);
+      display: block;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── バッジ ─── */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .badge-free { background: #1a3a1a; color: var(--success); border: 1px solid var(--success); }
+    .badge-paid { background: #3a1a1a; color: var(--danger); border: 1px solid var(--danger); }
+    .badge-key  { background: #2a2a0a; color: var(--gold); border: 1px solid var(--gold); }
+    .badge-hot  { background: #3a0a1a; color: var(--accent2); border: 1px solid var(--accent2); }
+
+    /* ─── 強調ボックス ─── */
+    .callout {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .callout-tip { background: #0d2a1a; border: 1px solid var(--success); }
+    .callout-warn { background: #2a1a0a; border: 1px solid var(--warning); }
+    .callout-key { background: #1a1a0d; border: 1px solid var(--gold); }
+
+    .callout-icon { font-size: 22px; flex-shrink: 0; }
+    .callout-body h4 { font-size: 14px; color: #fff; margin-bottom: 6px; }
+    .callout-body p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── 表 ─── */
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      background: #1a1a3a;
+      color: var(--accent);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--accent);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    tr:hover td { background: #0f0f28; }
+
+    /* ─── スキルメーター ─── */
+    .skill-bar {
+      margin-bottom: 14px;
+    }
+
+    .skill-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .skill-bar-label span:first-child { color: var(--text); }
+    .skill-bar-label span:last-child { color: var(--muted); }
+
+    .skill-track {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    /* ─── チェックリスト ─── */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .check-box:hover {
+      border-color: var(--accent);
+    }
+
+    .check-box.checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .check-box.checked::after {
+      content: "✓";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      height: 100%;
+    }
+
+    /* ─── 月間プランタイムライン ─── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── フッター ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ─── レスポンシブ ─── */
+    @media (max-width: 600px) {
+      .hero { padding: 40px 16px 28px; }
+      .container { padding: 0 12px 40px; }
+      .card { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="hero">
+  <div class="hero-tag">Kindle KDP Marketing Guide</div>
+  <h1>作品を<span>読者に届ける</span>力を身につける<br>個人出版マーケティング攻略</h1>
+  <p>作品を作る力はある。あとは届ける力だけ。集客・販売・ブランディングの正しいスキルを体系的に習得しよう。</p>
+  <div class="author-badge">📚 パンケーキ502 の成長ロードマップ</div>
+</div>
+
+<!-- ナビ -->
+<nav class="toc">
+  <a href="#mindset">マインドセット</a>
+  <a href="#kdp-opt">KDP最適化</a>
+  <a href="#cover">表紙・第一印象</a>
+  <a href="#description">商品説明文</a>
+  <a href="#pricing">価格戦略</a>
+  <a href="#sns">SNS集客</a>
+  <a href="#reviews">レビュー獲得</a>
+  <a href="#ads">Amazon広告</a>
+  <a href="#email">メールリスト</a>
+  <a href="#series">シリーズ戦略</a>
+  <a href="#plan">90日プラン</a>
+  <a href="#checklist">チェックリスト</a>
+</nav>
+
+<div class="container">
+
+  <!-- マインドセット -->
+  <section class="section" id="mindset">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <span class="section-icon">🧠</span>
+      <h2>マインドセット：作家からプロデューサーへ</h2>
+    </div>
+
+    <div class="callout callout-key">
+      <span class="callout-icon">💡</span>
+      <div class="callout-body">
+        <h4>根本的な視点の転換</h4>
+        <p>「良いものを作れば売れる」は幻想。個人出版で成功するには、<strong>作品を作る力50%＋届ける力50%</strong>が必要。マーケティングは後付けではなく、企画段階から始まる。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>❌ 避けるべき思考</h3>
+        <ul>
+          <li>「良い作品なのに売れない」と嘆く</li>
+          <li>出版したら終わりと思う</li>
+          <li>セルフプロモーションを恥ずかしがる</li>
+          <li>結果が出るまで2週間で諦める</li>
+          <li>全員に売ろうとする</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>✅ プロデューサーの思考</h3>
+        <ul>
+          <li>「誰に・何を・なぜ」を常に考える</li>
+          <li>出版後こそが仕事の始まり</li>
+          <li>自分の作品を誇りを持って紹介する</li>
+          <li>最低3〜6ヶ月で結果を評価する</li>
+          <li>ニッチな読者層に深く刺さる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📊 売上を決める3つの要素</h3>
+      <div style="margin-top: 12px;">
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>発見してもらう力（集客）</span><span>アルゴリズム・SNS・広告</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>買ってもらう力（転換）</span><span>表紙・説明文・価格・レビュー</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>ファンになってもらう力（継続）</span><span>品質・シリーズ・コミュニティ</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KDP最適化 -->
+  <section class="section" id="kdp-opt">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <span class="section-icon">🔍</span>
+      <h2>KDP最適化：Amazonアルゴリズムに愛される</h2>
+    </div>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">Amazonの検索に表示されることが集客の第一歩。メタデータを最適化して「発見される本」にする。</p>
+
+    <div class="steps">
+      <div class="step">
+        <h3>キーワードリサーチ（最重要）</h3>
+        <p>KDPダッシュボードで設定できるキーワードは7個。Amazonの検索バーに関連語を入力してサジェストされる言葉を収集する。「ライトノベル 異世界」「恋愛小説 短編」など読者が実際に検索する言葉を選ぶ。Google Keyword Plannerや無料ツールも活用。競合が少なく需要がある「穴場キーワード」を狙う。</p>
+      </div>
+      <div class="step">
+        <h3>カテゴリの戦略的選択</h3>
+        <p>2つのカテゴリを選べる。メジャーカテゴリ（激戦区）とニッチカテゴリを組み合わせる。ニッチカテゴリでランキング上位に入ることでベストセラーバッジを獲得しやすくなる。KDPサポートに連絡することで追加カテゴリ（最大10個）を設定できる場合もある。</p>
+      </div>
+      <div class="step">
+        <h3>タイトルとサブタイトルの最適化</h3>
+        <p>タイトルにキーワードを自然に含める。サブタイトルは検索対象になる重要なスペース。「【完結】」「【全話収録】」などの訴求ワードも効果的。ただし、Amazon規約に反するキーワードの詰め込みは禁止。</p>
+      </div>
+      <div class="step">
+        <h3>出版直後の初動を作る</h3>
+        <p>Amazonアルゴリズムは発売直後の売上速度を重視する。出版前から読者へ告知し、発売日に集中して購入・レビューしてもらう「発売日キャンペーン」が重要。KDP Select加入なら無料プロモーション（5日間）を初動に活用する。</p>
+      </div>
+    </div>
+
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <h4>Amazon規約に注意</h4>
+        <p>虚偽のキーワード設定・レビュー操作・順位操作はアカウント停止リスクがある。必ず公式ガイドラインを確認すること。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 表紙 -->
+  <section class="section" id="cover">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <span class="section-icon">🎨</span>
+      <h2>表紙・第一印象：0.3秒で勝負が決まる</h2>
+    </div>
+
+    <div class="callout callout-key">
+      <span class="callout-icon">🏆</span>
+      <div class="callout-body">
+        <h4>表紙は最大のマーケティングツール</h4>
+        <p>読者は検索結果で表紙サムネイルを0.3秒で判断する。プロ品質の表紙は売上に直結する最重要投資。同ジャンルの売れ筋表紙を分析して「ジャンルのお約束」を理解する。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>🛠 制作ツール（無料〜低コスト）</h3>
+        <ul>
+          <li><strong>Canva</strong> — テンプレート豊富、日本語フォント対応 <span class="badge badge-free">無料あり</span></li>
+          <li><strong>Adobe Express</strong> — プロ品質のデザイン <span class="badge badge-free">無料あり</span></li>
+          <li><strong>DALL-E / Midjourney</strong> — AIイラスト生成 <span class="badge badge-paid">有料</span></li>
+          <li><strong>ココナラ</strong> — プロデザイナーに発注 <span class="badge badge-paid">有料</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>✅ 良い表紙の条件</h3>
+        <ul>
+          <li>サムネイル（160×250px相当）でも判読できる</li>
+          <li>タイトルフォントが大きく読みやすい</li>
+          <li>ジャンルが一目でわかる配色・構図</li>
+          <li>競合と差別化できる独自性がある</li>
+          <li>プロが作ったと感じさせる品質感</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📐 KDP推奨サイズ</h3>
+      <p style="margin-bottom: 8px; font-size: 13px; color: var(--muted);">縦横比2:3（例：2560×1600px）、JPEG または TIFF、RGB カラー。Kindle Createで確認してから入稿しよう。</p>
+    </div>
+  </section>
+
+  <!-- 商品説明文 -->
+  <section class="section" id="description">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <span class="section-icon">✍️</span>
+      <h2>商品説明文：クリックを購入に変えるコピーライティング</h2>
+    </div>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">表紙でクリックしてもらい、商品説明文で「買おう」と決断させる。セールスコピーの技術が必須。</p>
+
+    <div class="steps">
+      <div class="step">
+        <h3>フック（冒頭1〜2行）で心を掴む</h3>
+        <p>読者が「これは自分のための本だ」と感じる一文から始める。問いかけ・共感・衝撃的な事実など。例：「あなたは今、人生の岐路に立っていませんか？」「たった3つのルールで、異世界最強の魔法使いになれる。」</p>
+      </div>
+      <div class="step">
+        <h3>あらすじ・内容説明（中盤）</h3>
+        <p>小説なら主人公・舞台・葛藤を簡潔に。ビジネス書なら「この本で何が得られるか」を箇条書きで。読者の脳内に映像が浮かぶ具体的な描写を心がける。ネタバレは避けつつ読みたい気持ちを煽る。</p>
+      </div>
+      <div class="step">
+        <h3>社会的証明（権威・実績）</h3>
+        <p>「シリーズ累計〇万ダウンロード」「カクヨム週間1位」「〇〇賞受賞」など実績があれば必ず記載。レビューの引用も効果的。実績がなくても「〇〇が好きな方に」とターゲットを明示するだけで信頼感が増す。</p>
+      </div>
+      <div class="step">
+        <h3>CTA（行動喚起）で締める</h3>
+        <p>「今すぐ試し読みで確認」「Kindle Unlimitedで無料」「続きが気になったらページをめくってみてください」など、次のアクションを促す一文で終わる。HTMLタグ（&lt;b&gt;、&lt;br&gt;）が使えるのでフォーマットを活用。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 価格戦略 -->
+  <section class="section" id="pricing">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <span class="section-icon">💰</span>
+      <h2>価格戦略：印税率と売上を最大化する</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>価格帯</th>
+            <th>印税率</th>
+            <th>向いているケース</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>99〜250円</td>
+            <td>35%</td>
+            <td>新作・入門・実績ゼロの初期集客</td>
+          </tr>
+          <tr>
+            <td>250〜1,250円</td>
+            <td>70%</td>
+            <td>メイン価格帯（最も効率良い）</td>
+          </tr>
+          <tr>
+            <td>1,251円以上</td>
+            <td>35%</td>
+            <td>ニッチ専門書・高単価コンテンツ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📌 KDP Select（Kindle Unlimited）</h3>
+        <ul>
+          <li>既読ページ数に応じて印税が発生</li>
+          <li>無料プロモーション（年5日）が使える</li>
+          <li>Kindleカウントダウンディール対応</li>
+          <li>90日間の独占販売義務あり</li>
+          <li>→ 小説・ライトノベルは特に有効</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📌 価格変更キャンペーン</h3>
+        <ul>
+          <li>期間限定セール（99円〜）で新規読者を獲得</li>
+          <li>セール告知をSNS・メールリストに流す</li>
+          <li>セール終了後は通常価格に戻してランク維持</li>
+          <li>月1回程度のセールが効果的</li>
+          <li>→ 1巻無料・2巻以降で回収するモデルが強い</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNS集客 -->
+  <section class="section" id="sns">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <span class="section-icon">📱</span>
+      <h2>SNS集客：ファンを作り続けるコンテンツ戦略</h2>
+    </div>
+
+    <div class="callout callout-tip">
+      <span class="callout-icon">✅</span>
+      <div class="callout-body">
+        <h4>SNSの基本ルール</h4>
+        <p>「宣伝ばかり」のアカウントはフォローされない。価値ある投稿（楽しい・有益・共感できる）を8割、宣伝を2割に抑える。まず関係性を築き、ファンが自然と買いたくなる状態を作る。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>🐦 X（Twitter）<span class="badge badge-hot">おすすめ</span></h3>
+        <ul>
+          <li>小説・ライトノベル・創作クラスタが活発</li>
+          <li>創作過程・キャラクター紹介・ラフ画を投稿</li>
+          <li>#創作 #自作小説 などのハッシュタグ活用</li>
+          <li>他の作家と相互フォロー・リプで関係構築</li>
+          <li>毎日〜週3回の継続投稿が重要</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📸 Instagram</h3>
+        <ul>
+          <li>ビジュアル系（イラスト・写真・デザイン）に強い</li>
+          <li>本の表紙・制作behind the scenesを投稿</li>
+          <li>#本好き #読書好き #電子書籍 などのタグ</li>
+          <li>リール（短動画）はリーチが広がりやすい</li>
+          <li>世界観を統一した美しいフィードを作る</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎵 TikTok / YouTube<span class="badge badge-hot">急成長</span></h3>
+        <ul>
+          <li>#BookTok（本好き動画）が世界的ブーム</li>
+          <li>本の紹介・執筆Vlog・キャラクター解説</li>
+          <li>顔出し不要のテキスト動画でも効果あり</li>
+          <li>1本バズれば一気に認知拡大する</li>
+          <li>再利用：同じ動画を各プラットフォームに投稿</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📖 note / カクヨム / Pixiv</h3>
+        <ul>
+          <li>無料試し読みを掲載して入口を作る</li>
+          <li>note：制作秘話・マーケティング日記を発信</li>
+          <li>カクヨム：既存読者コミュニティにアクセス</li>
+          <li>小説家になろう：ランキング経由の大量集客</li>
+          <li>→ 連載して読者を作り、Kindleへ誘導</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📅 週次SNS投稿テンプレート</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>曜日</th><th>投稿内容</th><th>目的</th></tr></thead>
+          <tbody>
+            <tr><td>月</td><td>新週の一言・今週の執筆目標</td><td>親近感・日常共有</td></tr>
+            <tr><td>水</td><td>作品のキャラクター紹介・名シーン</td><td>作品認知・興味喚起</td></tr>
+            <tr><td>金</td><td>執筆の裏話・苦労話・気づき</td><td>共感・ファン化</td></tr>
+            <tr><td>日</td><td>作品告知・Amazonリンク（週1回だけ）</td><td>直接販促</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- レビュー -->
+  <section class="section" id="reviews">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <span class="section-icon">⭐</span>
+      <h2>レビュー獲得：社会的証明を積み上げる</h2>
+    </div>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">Amazonのレビューは売上に直結する。最初の10件が最も難しく、最も重要。</p>
+
+    <div class="steps">
+      <div class="step">
+        <h3>既存読者・知人に正直にお願いする</h3>
+        <p>SNSのフォロワー、ブログ読者、友人・知人など実際に読んでくれた人にレビューをお願いする。「忖度なしの正直な感想で構いません」と伝えることで心理的ハードルが下がる。インセンティブとのリンクは規約違反なので注意。</p>
+      </div>
+      <div class="step">
+        <h3>本の末尾にレビュー依頼文を挿入</h3>
+        <p>本文最後のページに「もし気に入っていただけたら、Amazonにレビューを残していただけると励みになります」の一文を必ず入れる。購入者が本を読み終えた直後が最もレビュー執筆のモチベーションが高い瞬間。</p>
+      </div>
+      <div class="step">
+        <h3>ARC（事前配布）で発売前にレビューを準備</h3>
+        <p>発売前にベータ読者・感想モニターを募集し、無料でゲラを提供する代わりに正直な感想をAmazonに投稿してもらう（「無料でもらった」旨の開示が必要な場合あり。Amazon規約を確認）。発売日に最初のレビューがある状態を作る。</p>
+      </div>
+      <div class="step">
+        <h3>低評価レビューへの対処法</h3>
+        <p>低評価は必ず来る。感情的に反応しない。むしろ「その読者向けでないことが明確になった」と前向きに捉える。建設的な批評は次作の品質向上に活かす。返信する場合は冷静・丁寧に、かつ他の読者が読んでいることを意識する。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amazon広告 -->
+  <section class="section" id="ads">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <span class="section-icon">📣</span>
+      <h2>Amazon広告：お金で露出を買う</h2>
+    </div>
+
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <h4>広告は最後の手段ではなく、最後に習得するスキル</h4>
+        <p>表紙・説明文・レビューが整っていない状態で広告を出しても費用が無駄になる。まず有機的な売上（広告なし）を作ってから広告で加速させる順番が正しい。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📌 スポンサープロダクト広告（入門）</h3>
+        <ul>
+          <li>キーワード検索結果に本を表示させる</li>
+          <li>1日100〜300円の少額から始められる</li>
+          <li>自動ターゲティングで開始→データ取得</li>
+          <li>手動で効果的キーワードに絞って最適化</li>
+          <li>ACOS（広告費÷売上）30%以下を目標に</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📌 スポンサーディスプレイ広告（中級）</h3>
+        <ul>
+          <li>競合本のページに自分の本を表示</li>
+          <li>類似ジャンルの読者にアプローチできる</li>
+          <li>シリーズ完結後に全巻まとめて広告が効果的</li>
+          <li>リターゲティング：一度見た読者に再表示</li>
+          <li>スポンサープロダクトで慣れてから挑戦</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📊 広告運用の基本サイクル</h3>
+      <div class="timeline" style="margin-top: 12px;">
+        <div class="timeline-item">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-title">設定（1日目）</div>
+          <div class="timeline-desc">自動ターゲティングで開始。予算は1日200円程度で様子を見る。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-title">データ収集（2〜4週間）</div>
+          <div class="timeline-desc">どのキーワードでクリックされているかデータを蓄積する。最低2週間は触らない。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-title">最適化（継続）</div>
+          <div class="timeline-desc">売上につながったキーワードを手動広告に移行。効果のないキーワードを除外。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-title">スケール（3ヶ月後〜）</div>
+          <div class="timeline-desc">ROIがプラスになったら予算を増やす。マイナスのうちは増やさない。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- メールリスト -->
+  <section class="section" id="email">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <span class="section-icon">📧</span>
+      <h2>メールリスト：プラットフォームに依存しない資産</h2>
+    </div>
+
+    <div class="callout callout-key">
+      <span class="callout-icon">🏆</span>
+      <div class="callout-body">
+        <h4>メールリストは個人出版者の最強資産</h4>
+        <p>SNSのアルゴリズムは変わる。Amazonの規約も変わる。しかし自分のメールリストは奪われない。新作発売時に確実に告知できる読者リストを構築することが、長期的な安定収入への道。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>🛠 メールリスト構築ツール</h3>
+        <ul>
+          <li><strong>Mailchimp</strong> — 500名まで無料 <span class="badge badge-free">無料あり</span></li>
+          <li><strong>MailerLite</strong> — 1,000名まで無料・日本語対応 <span class="badge badge-free">無料あり</span></li>
+          <li><strong>ConvertKit</strong> — クリエイター特化型 <span class="badge badge-paid">有料</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎁 読者を集める「マグネット」</h3>
+        <ul>
+          <li>短編小説・プロローグ無料配布</li>
+          <li>未公開のキャラクター設定集</li>
+          <li>「次巻の先行公開」特典</li>
+          <li>サイン入り表紙のデジタル壁紙</li>
+          <li>執筆ノウハウ・ガイドブック（ノンフィク系）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <h3>本の末尾にメールリスト登録ページを案内する</h3>
+        <p>「登録で書き下ろし短編をプレゼント」など特典付きで誘導。短縮URLやQRコードを使うとクリックしやすい。Kindleの読者は読み終えた直後が最もファン熱量が高い。</p>
+      </div>
+      <div class="step">
+        <h3>定期的に価値あるメールを送る</h3>
+        <p>月1〜2回が目安。新作情報だけでなく、制作裏話・おすすめ本紹介・読者への質問など「価値ある情報」を提供し続ける。宣伝一辺倒のメルマガは購読解除される。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- シリーズ戦略 -->
+  <section class="section" id="series">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <span class="section-icon">📚</span>
+      <h2>シリーズ戦略：単発ではなく「経済圏」を作る</h2>
+    </div>
+
+    <div class="callout callout-tip">
+      <span class="callout-icon">✅</span>
+      <div class="callout-body">
+        <h4>シリーズは個人出版の最強ビジネスモデル</h4>
+        <p>1巻を読んだ読者が2巻・3巻と購入してくれる。一人の読者の生涯価値（LTV）を高めることが収益の安定につながる。広告費で獲得した1読者から複数巻の売上が得られる構造を作る。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>💡 シリーズ設計のポイント</h3>
+        <ul>
+          <li><strong>1巻完結</strong>にしつつ続きが気になる終わり方</li>
+          <li>各巻にサブプロット→メインで伏線回収</li>
+          <li>キャラクターへの愛着が続巻購入の動機</li>
+          <li>3巻以上揃ってから広告を打つと効率的</li>
+          <li>番外編・スピンオフで世界観を広げる</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>💡 読み放題（KU）との相性</h3>
+        <ul>
+          <li>Kindle Unlimited加入者は続巻購入ハードル低</li>
+          <li>ページ数分の印税が積み上がる</li>
+          <li>シリーズ完走率を上げる仕掛けを各巻に</li>
+          <li>1巻を無料/99円で提供し2巻以降で回収</li>
+          <li>全巻完結後は「完結作品」として宣伝できる</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 90日プラン -->
+  <section class="section" id="plan">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <span class="section-icon">🗓️</span>
+      <h2>90日マーケティング実行プラン</h2>
+    </div>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">今日から始める具体的なアクションプラン。小さく始めて継続することが最重要。</p>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <h3>📅 第1フェーズ：基盤整備（1〜30日）</h3>
+      <div class="timeline" style="margin-top: 12px;">
+        <div class="timeline-item">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-title">既存作品のKDP最適化（1〜7日）</div>
+          <div class="timeline-desc">全作品のキーワード・カテゴリ・商品説明文を見直してリライトする。競合ベストセラーの表紙・説明文を分析して参考にする。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-title">SNSアカウントの整備（1〜3日）</div>
+          <div class="timeline-desc">プロフィール写真・自己紹介・固定ツイートを整備。「どんな作品を書いているか」が一目でわかるプロフィールに。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-title">週次投稿ルーティン開始（8日〜）</div>
+          <div class="timeline-desc">SNS投稿テンプレートに沿って週3〜4回の投稿を習慣化。最初は反応がなくて当然。継続が最優先。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-title">メールリスト設定（15日〜）</div>
+          <div class="timeline-desc">MailerLiteなどで無料アカウント作成。既存作品末尾にメールリスト誘導文を追記してKDPで再入稿。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <h3>📅 第2フェーズ：集客拡大（31〜60日）</h3>
+      <div class="timeline" style="margin-top: 12px;">
+        <div class="timeline-item">
+          <div class="timeline-dot">5</div>
+          <div class="timeline-title">無料プロモーションキャンペーン実施</div>
+          <div class="timeline-desc">KDP Select加入作品で5日間の無料プロモーションを実施。SNSで告知して新規読者獲得を狙う。終了後のランキング上昇を利用。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">6</div>
+          <div class="timeline-title">他プラットフォームで試し読み公開</div>
+          <div class="timeline-desc">note・カクヨム・Pixivに第1話を無料公開。末尾にAmazonリンクとメールリスト登録を案内。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">7</div>
+          <div class="timeline-title">コミュニティ参加・交流</div>
+          <div class="timeline-desc">同ジャンルの作家フォロー・相互フォロー。読書コミュニティに参加して存在感を高める。売り込みより貢献が先。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📅 第3フェーズ：収益最適化（61〜90日）</h3>
+      <div class="timeline" style="margin-top: 12px;">
+        <div class="timeline-item">
+          <div class="timeline-dot">8</div>
+          <div class="timeline-title">Amazon広告の開始（データが揃ってから）</div>
+          <div class="timeline-desc">表紙・説明文・レビューが整った状態で、1日200円からスポンサープロダクト広告を開始。2週間データを蓄積してから調整。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">9</div>
+          <div class="timeline-title">KPIの振り返りと次の計画</div>
+          <div class="timeline-desc">90日の売上・ページ数・フォロワー増加・メールリスト登録数を振り返る。何が効いたか分析して次の90日プランに反映。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- チェックリスト -->
+  <section class="section" id="checklist">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <span class="section-icon">✅</span>
+      <h2>新作出版チェックリスト</h2>
+    </div>
+
+    <p style="color: var(--muted); margin-bottom: 20px; font-size: 14px;">新作を出版するたびにこのリストを確認しよう。チェックボックスをクリックしてチェックできます。</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📝 出版前（1〜2週間前）</h3>
+        <ul class="checklist" id="checklist1">
+          <li><div class="check-box" onclick="toggle(this)"></div>キーワードリサーチ完了</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>ターゲット読者を1人に絞って設定</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>表紙デザイン完成（サムネイル確認済み）</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>商品説明文のコピーライティング完成</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>カテゴリ2つ以上の選定完了</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>本文末尾：レビュー依頼文の挿入</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>本文末尾：メールリスト案内の挿入</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>SNSで発売予告の投稿開始</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🚀 出版後（1〜4週間）</h3>
+        <ul class="checklist" id="checklist2">
+          <li><div class="check-box" onclick="toggle(this)"></div>SNSで発売告知（複数プラットフォーム）</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>知人・読者へのレビュー依頼</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>note等に試し読み掲載</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>メールリスト読者への告知メール送信</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>KDP Select加入なら無料プロモーション計画</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>売上データの記録開始</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>2週間後：Amazon広告の検討</li>
+          <li><div class="check-box" onclick="toggle(this)"></div>1ヶ月後：結果分析と次作への反映</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- リソース -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">+</div>
+      <span class="section-icon">📖</span>
+      <h2>学習リソース・参考情報</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📚 参考書籍（日本語）</h3>
+        <ul>
+          <li>『ザ・コピーライティング』ジョン・ケープルズ</li>
+          <li>『影響力の武器』ロバート・チャルディーニ</li>
+          <li>『売れる文章術』堀田秀吾</li>
+          <li>『個人出版で稼ぐ』系KDP解説本（KDPで検索）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🌐 有用なサービス・ツール</h3>
+        <ul>
+          <li><strong>KDP（kdp.amazon.co.jp）</strong> — 公式ダッシュボード</li>
+          <li><strong>BookReport</strong> — 売上分析ツール</li>
+          <li><strong>Publisher Rocket</strong> — キーワード調査（英語）</li>
+          <li><strong>Canva</strong> — 表紙・SNS素材デザイン</li>
+          <li><strong>MailerLite</strong> — メールリスト管理</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-tip">
+      <span class="callout-icon">🚀</span>
+      <div class="callout-body">
+        <h4>最後に：行動が全て</h4>
+        <p>マーケティングの知識は行動しなければ意味がない。完璧を目指して動けなくなるより、70点でも今すぐ始める方が100倍価値がある。<strong>毎日1つの小さなアクション</strong>を積み重ねよう。パンケーキ502の作品が、もっと多くの読者に届くことを願っています。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>パンケーキ502 — Kindle個人出版マーケティング攻略ガイド</p>
+  <p style="margin-top: 8px;">
+    <a href="https://www.amazon.co.jp/stores/パンケーキ502/author/B0F492S966" target="_blank" rel="noopener">Amazonストアページ</a>
+    &nbsp;|&nbsp;
+    <a href="index.html">ブロック崩しゲーム</a>
+  </p>
+  <p style="margin-top: 8px; font-size: 11px; opacity: 0.5;">作ること＋届けること = 個人出版の成功方程式</p>
+</footer>
+
+<script>
+  // チェックボックストグル
+  function toggle(el) {
+    el.classList.toggle('checked');
+  }
+
+  // ローカルストレージでチェック状態を保存
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.check-box').forEach((box, i) => {
+      const saved = localStorage.getItem('check_' + i);
+      if (saved === '1') box.classList.add('checked');
+      box.addEventListener('click', () => {
+        localStorage.setItem('check_' + i, box.classList.contains('checked') ? '1' : '0');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
