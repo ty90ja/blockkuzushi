@@ -4,7 +4,7 @@
       "command": "npx",
       "args": ["-y", "@t09tanaka/mcp-simple-voicevox"],
       "env": {
-        "VOICEVOX_URL": "http://192.168.1.2:50021"
+        "VOICEVOX_URL": "http://192.168.1.2:50022"
       }
     }
   }
